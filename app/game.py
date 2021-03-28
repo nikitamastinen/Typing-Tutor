@@ -42,6 +42,7 @@ class Game:
         )
         pygame.display.update()
         while True:
+            pygame.time.delay(100)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -53,7 +54,6 @@ class Game:
                     )
                     pygame.display.update()
                     return
-
 
     def change_state(self, prefix, is_wrong_symbol):
         words = self.text
@@ -141,6 +141,5 @@ class Game:
 
     def play(self):
         timer_task = threading.Thread(target=self.show_statistics, args=[], daemon=False)
-        run_task = threading.Thread(target=self.run, args=[], daemon=False)
         timer_task.start()
-        run_task.start()
+        self.run()
